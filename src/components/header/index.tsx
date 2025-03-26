@@ -14,7 +14,7 @@ export const Header = () => {
             <S.NavItem onClick={() => navigate("/")}>Characters</S.NavItem>
             <S.NavItem onClick={() => navigate("/planets")}>Planets</S.NavItem>
             <S.NavItem onClick={() => navigate("/favorties")}>
-              Favarites
+              Favorites
             </S.NavItem>
           </S.Nav>
         </S.Content>
