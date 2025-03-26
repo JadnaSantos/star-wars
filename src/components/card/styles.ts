@@ -6,11 +6,12 @@ export const CardContainer = styled.div`
   display: flex;
   padding: 20px;
   margin: 20px;
-  align-items: center;
+  cursor: pointer;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  align-items: center;
+  border-radius: 18px;
   flex-direction: column;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: ${THEME_COLORS.AZUL_CLARO};
 
   @media (max-width: ${DEVICES.MOBILE}) {
     width: 100%;

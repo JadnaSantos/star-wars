@@ -24,7 +24,7 @@ export const Card = ({ id, title, details }: CardProps) => {
       <S.CardContainer>
         <S.CardContent>
           <S.CardTitle>{title}</S.CardTitle>
-          <S.CardList>
+          <S.CardList key={id}>
             {details.map((detail) => (
               <S.CardListItem key={id}>
                 <strong>{detail.label}:</strong>{" "}
