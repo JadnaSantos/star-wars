@@ -3,7 +3,6 @@ import { DEVICES } from "../../styles/theme/devices";
 
 export const Grid = styled.div`
   width: 100%;
-  padding: 1rem;
   max-width: 1440px;
   margin: 3rem auto;
 
