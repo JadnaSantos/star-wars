@@ -1,22 +1,36 @@
 import { api } from "../api";
 
 export const StartWarsService = {
-  getCharacters: async function () {
+  getCharacters: async function (params: { page?: number }) {
+    const endpoint = params.page ? `/people/?page=${params.page}` : "/people/";
     try {
-      const data = await api.get("/people");
+      const response = await api.get(endpoint);
+      return response;
+    } catch (error) {
+      console.error("Failed to fetch characters:", error);
+      throw error;
+    }
+  },
+
+  searchCharacters: async function (search: string) {
+    try {
+      const data = await api.get(`/people/?search=${search}`);
       return data;
     } catch (error) {
       console.log("error", error);
     }
   },
 
-  getPlanets: async function () {
+  getPlanets: async function (params: { page?: number }) {
+    const endpoint = params.page
+      ? `/planets/?page=${params.page}`
+      : "/planets/";
     try {
-      const data = await api.get("/planets");
-
-      return data;
+      const response = await api.get(endpoint);
+      return response;
     } catch (error) {
-      console.log("error", error);
+      console.error("Failed to fetch characters:", error);
+      throw error;
     }
   },
 
