@@ -56,22 +56,4 @@ export const StartWarsService = {
       }
     }
   },
-
-  getCharacterById: async function (id: string) {
-    try {
-      const data = await api.get(`/people/${id}`);
-      return data;
-    } catch (error) {
-      console.log("error", error);
-    }
-  },
-
-  getPlanetById: async function (id: string) {
-    try {
-      const data = await api.get(`/planets/${id}`);
-      return data;
-    } catch (error) {
-      console.log("error", error);
-    }
-  },
 };
