@@ -1,7 +1,6 @@
 import * as S from "./styles";
 import starWars from "../../assets/star-wars.svg";
 import { useNavigate } from "react-router-dom";
-import { Search } from "../search";
 export const Header = () => {
   const navigate = useNavigate();
   return (
@@ -19,11 +18,6 @@ export const Header = () => {
           </S.Nav>
         </S.Content>
       </S.Header>
-
-      <Search
-        placeholder="Search for characters or planets"
-        onClick={() => console.log("busca")}
-      />
     </>
   );
 };
