@@ -7,7 +7,6 @@ export const CardContainer = styled.div`
   padding: 20px;
   margin: 20px;
   cursor: pointer;
-  border: 1px solid #ddd;
   align-items: center;
   border-radius: 18px;
   flex-direction: column;
@@ -26,9 +25,9 @@ export const Logo = styled.h1`
 `;
 
 export const CardContent = styled.div`
+  gap: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const CardTitle = styled.h2`
@@ -51,6 +50,7 @@ export const CardListItem = styled.li`
     color: ${THEME_COLORS.AZUL_ESCURO};
     font-size: 16px;
     font-weight: 400;
+    display: contents;
   }
 
   span {
@@ -62,4 +62,20 @@ export const CardListItem = styled.li`
       color: ${THEME_COLORS.PRETO};
     }
   }
+`;
+
+export const FavoriteIcon = styled.div<{ favorited: boolean }>`
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  font-size: 1.4rem;
+
+  color: ${(props) =>
+    props.favorited ? `${THEME_COLORS.AMARELO}` : `${THEME_COLORS.CINZA}`};
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  transition: transform 0.2s ease;
 `;
