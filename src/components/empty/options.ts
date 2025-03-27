@@ -4,7 +4,7 @@ export type TypeEmpity = keyof typeof optionsEmpty;
 export const optionsEmpty = {
   back: {
     textButton: "Recarregar página",
-    title: "Desculpe, estamos em manutenção",
+    title: "Essa página está em construção para melhor atendê-lo",
     img: `${empty}`,
   },
 };
