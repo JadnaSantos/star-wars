@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
+import { useNavigate } from "react-router-dom";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { useFavorites } from "../../hooks/useFavorite";
 
 export type CardProps = {
   id: string;
   title: string;
   details: {
     label: string;
-    value?: string;
+    value?: string | React.ReactNode;
     link?: string;
   }[];
 };
@@ -27,7 +29,7 @@ export const Card = ({ id, title, details }: CardProps) => {
           <S.CardList key={id}>
             {details.map((detail) => (
               <S.CardListItem key={id}>
-                <strong>{detail.label}:</strong>{" "}
+                <p>{detail.label}:</p>{" "}
                 {detail.link ? (
                   <span onClick={() => handleNavigation(detail.link)}>
                     {detail.value}
