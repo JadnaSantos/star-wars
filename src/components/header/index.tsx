@@ -1,6 +1,8 @@
 import * as S from "./styles";
-import starWars from "../../assets/star-wars.svg";
+import { PATH } from "../../routes/path";
 import { useNavigate } from "react-router-dom";
+import starWars from "../../assets/star-wars.svg";
+
 export const Header = () => {
   const navigate = useNavigate();
   return (
@@ -10,9 +12,13 @@ export const Header = () => {
 
         <S.Content>
           <S.Nav>
-            <S.NavItem onClick={() => navigate("/")}>Characters</S.NavItem>
-            <S.NavItem onClick={() => navigate("/planets")}>Planets</S.NavItem>
-            <S.NavItem onClick={() => navigate("/favorties")}>
+            <S.NavItem onClick={() => navigate(PATH.CHARACTERS)}>
+              Characters
+            </S.NavItem>
+            <S.NavItem onClick={() => navigate(PATH.PLANETS)}>
+              Planets
+            </S.NavItem>
+            <S.NavItem onClick={() => navigate(PATH.FAVORITES)}>
               Favorites
             </S.NavItem>
           </S.Nav>
