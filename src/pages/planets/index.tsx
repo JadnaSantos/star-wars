@@ -4,6 +4,7 @@ import { Search } from "../../components/search";
 import { Loading } from "../../components/loading";
 import { usePlanets } from "../../hooks/usePlanets";
 import { Pagination } from "../../components/pagination";
+import { PATH } from "../../routes/path";
 
 export const Planets = () => {
   const { loading, planets, totalPages, page, setPage, search, setSearch } =
@@ -33,7 +34,7 @@ export const Planets = () => {
                   {
                     label: "Residents",
                     value: item.residents.join(", "),
-                    link: `/details/${item.id}`,
+                    link: `${PATH.DETAILS}`,
                   },
                 ]}
               />
