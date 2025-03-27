@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { useDebounce } from "./useDebouce";
 import { Characters } from "../types/characters.types";
 import { useState, useEffect, useCallback } from "react";
 import { StartWarsService } from "../service/http/star.wars.service";
@@ -11,11 +10,9 @@ export const useCharacters = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [characters, setCharacters] = useState<Characters[]>([]);
 
-  const debouncedSearch = useDebounce(search, 500);
-
   const fetchData = useCallback(async () => {
     try {
-      const response = debouncedSearch
+      const response = search
         ? await StartWarsService.searchCharacters(search)
         : await StartWarsService.getCharacters({ page });
 
@@ -28,7 +25,7 @@ export const useCharacters = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, page, debouncedSearch]);
+  }, [search, page]);
 
   useEffect(() => {
     fetchData();
