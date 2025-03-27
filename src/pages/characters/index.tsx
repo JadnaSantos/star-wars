@@ -34,7 +34,7 @@ export const Characters = () => {
                   {
                     label: "Homeworld",
                     value: item.url,
-                    link: `${PATH.DETAILS}/${item.url.split("/")[5]}`,
+                    link: `${PATH.DETAILS}`,
                   },
                 ]}
               />
