@@ -1,44 +1,14 @@
 import * as S from "./styles";
 import { PATH } from "../../routes/path";
-import { useEffect, useState } from "react";
 import { Card } from "../../components/card";
-import { useNavigate } from "react-router-dom";
-import { StartWarsService } from "../../service/http/star.wars.service";
+import { Search } from "../../components/search";
 import { Loading } from "../../components/loading";
+import { useCharacters } from "../../hooks/useCharacter";
 import { Pagination } from "../../components/pagination";
 
-export type Character = {
-  id: string;
-  name: string;
-  height: string;
-  birth_year: string;
-  url: string;
-};
-
 export const Characters = () => {
-  // const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [totalPages, setTotalPages] = useState(0);
-  const [characters, setCharacters] = useState<Character[]>([]);
-
-  const fetchCharacters = async (page: number) => {
-    setLoading(true);
-    try {
-      const response = await StartWarsService.getCharacters({ page });
-      setCharacters(response?.data.results);
-      setTotalPages(Math.ceil(response?.data.count / 10));
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCharacters(page);
-  }, [page]);
+  const { characters, totalPages, loading, page, setPage, search, setSearch } =
+    useCharacters();
 
   return (
     <>
@@ -46,6 +16,12 @@ export const Characters = () => {
         <Loading />
       ) : (
         <>
+          <Search
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search character..."
+            onClick={() => setPage(1)}
+          />
           <S.Grid>
             {characters?.map((item) => (
               <Card
