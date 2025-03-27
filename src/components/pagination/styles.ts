@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { THEME_COLORS } from "../../styles/theme/colors";
+import { DEVICES } from "../../styles/theme/devices";
 
 export const Pagination = styled.div`
   gap: 30px;
@@ -10,6 +11,10 @@ export const Pagination = styled.div`
 
   margin-bottom: 1rem;
   padding: 2rem;
+
+  @media (max-width: ${DEVICES.MOBILEL}) {
+    gap: 1px;
+  }
 `;
 
 export const Button = styled.button`
