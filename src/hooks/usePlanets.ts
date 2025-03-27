@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { useDebounce } from "./useDebouce";
 import { Planets } from "../types/planets.types";
 import { useState, useEffect, useCallback } from "react";
 import { StartWarsService } from "../service/http/star.wars.service";
@@ -11,11 +10,9 @@ export const usePlanets = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [planets, setPlanets] = useState<Planets[]>([]);
 
-  const debouncedSearch = useDebounce(search, 500);
-
   const fetchData = useCallback(async () => {
     try {
-      const response = debouncedSearch
+      const response = search
         ? await StartWarsService.searchPlanets(search)
         : await StartWarsService.getPlanets({ page });
 
@@ -32,7 +29,7 @@ export const usePlanets = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, page, debouncedSearch]);
+  }, [search, page]);
 
   useEffect(() => {
     fetchData();
