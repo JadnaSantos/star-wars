@@ -1,6 +1,6 @@
 export const PATH = {
   CHARACTERS: "/",
   PLANETS: "/planets",
-  DETAILS: "/details",
+  DETAILS: "/details/:type/:id",
   FAVORITES: "/favorites",
 };
