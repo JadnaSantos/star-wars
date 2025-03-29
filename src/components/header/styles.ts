@@ -27,6 +27,7 @@ export const Logo = styled.img`
   cursor: pointer;
 
   @media (max-width: ${DEVICES.MOBILEL}) {
+    display: none;
     width: 20%;
     height: 20%;
   }
@@ -45,6 +46,12 @@ export const Content = styled.main`
     display: flex;
     justify-content: end;
   }
+
+  @media (max-width: ${DEVICES.MOBILEM}) {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -59,6 +66,8 @@ export const Nav = styled.nav`
 
   @media (max-width: ${DEVICES.MOBILEL}) {
     display: flex;
+    justify-content: center;
+    padding: 2rem;
   }
 `;
 
