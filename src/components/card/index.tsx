@@ -30,7 +30,7 @@ export const Card = ({ id, title, details }: CardProps) => {
           <S.CardTitle>{title}</S.CardTitle>
           <S.CardList key={id}>
             {details.map((detail) => (
-              <S.CardListItem key={id}>
+              <S.CardListItem>
                 <S.CardListItens>
                   <p>{detail.label}:</p>
                   <p>{detail.value}</p>
