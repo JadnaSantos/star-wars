@@ -4,10 +4,9 @@ import { Search } from "../../components/search";
 import { Loading } from "../../components/loading";
 import { usePlanets } from "../../hooks/usePlanets";
 import { Pagination } from "../../components/pagination";
-import { PATH } from "../../routes/path";
 
 export const Planets = () => {
-  const { loading, planets, totalPages, page, setPage, search, setSearch } =
+  const { planets, loading, totalPages, page, setPage, search, setSearch } =
     usePlanets();
 
   return (
@@ -18,9 +17,9 @@ export const Planets = () => {
         <>
           <Search
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search planets..."
             onClick={() => setPage(1)}
+            placeholder="Search planets..."
+            onChange={(e) => setSearch(e.target.value)}
           />
           <S.GridPlanet>
             {planets?.map((item) => (
@@ -33,8 +32,8 @@ export const Planets = () => {
                   { label: "Climate", value: item.climate },
                   {
                     label: "Residents",
-                    value: item.residents.join(", "),
-                    link: `${PATH.DETAILS}`,
+                    value: item.residents.length ? undefined : "No residents",
+                    link: item.residents.length ? item.residents : undefined,
                   },
                 ]}
               />
