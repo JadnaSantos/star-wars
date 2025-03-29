@@ -1,7 +1,7 @@
 import { PATH } from "./path";
 import { Layout } from "../layout";
 import { Planets } from "../pages/planets";
-import { DetailPage } from "../pages/details";
+import { DetailsPage } from "../pages/details";
 import { Favorites } from "../pages/favorites";
 import { Characters } from "../pages/characters";
 import { createBrowserRouter } from "react-router-dom";
@@ -27,7 +27,7 @@ export const routes = createBrowserRouter([
     path: PATH.DETAILS,
     element: (
       <Layout>
-        <DetailPage />
+        <DetailsPage />
       </Layout>
     ),
   },
