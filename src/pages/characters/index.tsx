@@ -1,5 +1,4 @@
 import * as S from "./styles";
-import { PATH } from "../../routes/path";
 import { Card } from "../../components/card";
 import { Search } from "../../components/search";
 import { Loading } from "../../components/loading";
@@ -7,7 +6,7 @@ import { useCharacters } from "../../hooks/useCharacter";
 import { Pagination } from "../../components/pagination";
 
 export const Characters = () => {
-  const { characters, totalPages, loading, page, setPage, search, setSearch } =
+  const { characters, loading, totalPages, page, setPage, search, setSearch } =
     useCharacters();
 
   return (
@@ -33,8 +32,7 @@ export const Characters = () => {
                   { label: "BirthYear", value: item.birth_year },
                   {
                     label: "Homeworld",
-                    value: item.url,
-                    link: `${PATH.DETAILS}`,
+                    link: item.homeworld,
                   },
                 ]}
               />
