@@ -1,54 +1,48 @@
-# React + TypeScript + Vite
+# Star Wars
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação Web de listagem de personagens e planetas da API SWAPI. É possivel acessar em ambiente de produção clicanco aqui
 
-Currently, two official plugins are available:
+### Stack utilizada
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Front-end:**
 
-## Expanding the ESLint configuration
+- [React.js](https://reactjs.org/docs/getting-started)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled Components](https://styled-components.com/)
+- [React-Hook-Form](https://react-hook-form.com/api/Useform/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Rodando localmente
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Clone o projeto
+
+```bash
+  git clone https://link-para-o-projeto
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Entre no diretório do projeto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+  cd my-project
 ```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start
+```
+
+## Implementações Futuras
+
+Em futuras implementações, para a melhoria e desempenho do projeto, desejo realizar os seguintes pontos:
+
+- Melhorar performance da aplicação;
+
+- Melhorar validações e tratativa de erros;
+
+- Implementar testes.
