@@ -1,9 +1,68 @@
-import { PATH } from "../../routes/path";
-import { Empty } from "../../components/empty";
-import { useNavigate } from "react-router-dom";
+import { Card } from "../../components/card";
+import { Loading } from "../../components/loading";
+import { useDetails } from "../../hooks/useDetails";
+import { Details } from "../../types/details.type";
+import * as S from "./styles";
+export const DetailsPage = () => {
+  const { data, loading, type } = useDetails() as {
+    data: Details | Details[];
+    loading: boolean;
+    type: string;
+  };
 
-export const DetailPage = () => {
-  const navigate = useNavigate();
+  const hasResidents = (item: Details) => {
+    return Array.isArray(item.residents) && item.residents.length > 0;
+  };
 
-  return <Empty type="back" onClick={() => navigate(PATH.CHARACTERS)} />;
+  const getDetailsByType = (item: Details, type: string) => {
+    if (type === "people") {
+      return [
+        { label: "Height", value: item.height },
+        { label: "BirthYear", value: item.birth_year },
+        { label: "Homeworld", link: item.homeworld },
+      ];
+    }
+
+    if (type === "planets") {
+      return [
+        { label: "Climate", value: item.climate },
+        { label: "Terrain", value: item.terrain },
+        {
+          label: "Residents",
+          value: hasResidents(item) ? undefined : "No residents",
+          link: hasResidents(item) ? item.residents : undefined,
+        },
+      ];
+    }
+
+    return [];
+  };
+
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <S.Grid>
+          {Array.isArray(data) ? (
+            data.map((item: Details) => (
+              <Card
+                key={item.name}
+                id={item.url}
+                title={item.name}
+                details={getDetailsByType(item, type)}
+              />
+            ))
+          ) : (
+            <Card
+              key={data.name}
+              id={data.url}
+              title={data.name}
+              details={getDetailsByType(data, type)}
+            />
+          )}
+        </S.Grid>
+      )}
+    </>
+  );
 };
