@@ -2,7 +2,7 @@ import * as S from "./styles";
 import { Card } from "../../components/card";
 import { Search } from "../../components/search";
 import { Loading } from "../../components/loading";
-import { useCharacters } from "../../hooks/useCharacter";
+import { useCharacters } from "../../hooks/useCharacters";
 import { Pagination } from "../../components/pagination";
 
 export const Characters = () => {
