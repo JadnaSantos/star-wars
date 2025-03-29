@@ -1,4 +1,3 @@
-import { PATH } from "../../routes/path";
 import * as S from "./styles";
 import { useNavigate } from "react-router-dom";
 
