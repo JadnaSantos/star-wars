@@ -56,4 +56,17 @@ export const StartWarsService = {
       }
     }
   },
+
+  getDetails: async function (type: string, id: string) {
+    try {
+      const data = await api.get(`/${type}/${id}/`);
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(`Error to getDetails: ${error.message}`);
+      } else {
+        throw new Error(`Unknown error: ${error}`);
+      }
+    }
+  },
 };
