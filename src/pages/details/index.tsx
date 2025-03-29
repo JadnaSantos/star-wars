@@ -40,23 +40,20 @@ export const DetailsPage = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
+      {loading && <Loading />}
+      {!loading && (
         <S.Grid>
           {Array.isArray(data) ? (
             data.map((item: Details) => (
               <Card
-                key={item.name}
-                id={item.url}
+                key={item.url}
                 title={item.name}
                 details={getDetailsByType(item, type)}
               />
             ))
           ) : (
             <Card
-              key={data.name}
-              id={data.url}
+              key={data.url}
               title={data.name}
               details={getDetailsByType(data, type)}
             />

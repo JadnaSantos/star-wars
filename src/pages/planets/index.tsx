@@ -11,9 +11,8 @@ export const Planets = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
+      {loading && <Loading />}
+      {!loading && (
         <>
           <Search
             value={search}
@@ -24,8 +23,7 @@ export const Planets = () => {
           <S.GridPlanet>
             {planets?.map((item) => (
               <Card
-                id={item.id}
-                key={item.name}
+                key={item.url}
                 title={item.name}
                 details={[
                   { label: "Orbital Rotation", value: item.orbital_period },

@@ -11,9 +11,8 @@ export const Characters = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
+      {loading && <Loading />}
+      {!loading && (
         <>
           <Search
             value={search}
@@ -24,8 +23,7 @@ export const Characters = () => {
           <S.Grid>
             {characters?.map((item) => (
               <Card
-                id={item.id}
-                key={item.name}
+                key={item.url}
                 title={item.name}
                 details={[
                   { label: "Height", value: item.height },
