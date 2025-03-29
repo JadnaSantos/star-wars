@@ -4,4 +4,5 @@ export type Planets = {
   climate: string;
   residents: Array<string>;
   orbital_period: string;
+  url: string;
 };
