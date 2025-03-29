@@ -3,7 +3,6 @@ import { DEVICES } from "../../styles/theme/devices";
 import { THEME_COLORS } from "../../styles/theme/colors";
 
 export const CardContainer = styled.div`
-  display: flex;
   padding: 20px;
   margin: 20px;
   cursor: pointer;
@@ -43,39 +42,40 @@ export const CardList = styled.ul`
 
 export const CardListItem = styled.li`
   margin-bottom: 8px;
-  font-size: 1rem;
-  color: ${THEME_COLORS.PRETO};
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+`;
+
+export const CardListItens = styled.div`
+  display: flex;
+  gap: 10px;
 
   p {
-    color: ${THEME_COLORS.AZUL_ESCURO};
-    font-size: 16px;
-    font-weight: 400;
-    display: contents;
-  }
-
-  span {
-    color: blue;
-    cursor: pointer;
-    text-decoration: underline;
-
-    &:hover {
-      color: ${THEME_COLORS.PRETO};
-    }
+    font-weight: 600;
   }
 `;
 
-export const FavoriteIcon = styled.div<{ favorited: boolean }>`
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
-  font-size: 1.4rem;
-
-  color: ${(props) =>
-    props.favorited ? `${THEME_COLORS.AMARELO}` : `${THEME_COLORS.CINZA}`};
+export const CardLink = styled.a`
+  text-decoration: underline;
 
   &:hover {
-    transform: scale(1.2);
+    text-decoration: none;
   }
-
-  transition: transform 0.2s ease;
 `;
+
+// export const FavoriteIcon = styled.div<{ favorited: boolean }>`
+//   top: 8px;
+//   right: 8px;
+//   cursor: pointer;
+//   font-size: 1.4rem;
+
+//   color: ${(props) =>
+//     props.favorited ? `${THEME_COLORS.AMARELO}` : `${THEME_COLORS.CINZA}`};
+
+//   &:hover {
+//     transform: scale(1.2);
+//   }
+
+//   transition: transform 0.2s ease;
+// `;
