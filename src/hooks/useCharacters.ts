@@ -1,7 +1,7 @@
-import { toast } from "react-toastify";
 import { Characters } from "../types/characters.types";
 import { useState, useEffect, useCallback } from "react";
 import { StartWarsService } from "../service/http/star.wars.service";
+import { ErrorLoadCharacters } from "./erros/ErrorLoadCharacters";
 
 export const useCharacters = () => {
   const [page, setPage] = useState(1);
@@ -18,10 +18,8 @@ export const useCharacters = () => {
 
       setCharacters(response?.data.results || []);
       setTotalPages(Math.ceil(response?.data.count / 10));
-    } catch (error: unknown) {
-      toast.error("Erro ao buscar personagens, tente novamente mais tarde", {
-        autoClose: 5000,
-      });
+    } catch (error) {
+      new ErrorLoadCharacters(error as Error);
     } finally {
       setLoading(false);
     }

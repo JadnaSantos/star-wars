@@ -1,7 +1,7 @@
-import { toast } from "react-toastify";
 import { Planets } from "../types/planets.types";
 import { useState, useEffect, useCallback } from "react";
 import { StartWarsService } from "../service/http/star.wars.service";
+import { ErrorLoadPlanets } from "./erros/ErrorLoadPlanets";
 
 export const usePlanets = () => {
   const [page, setPage] = useState(1);
@@ -18,14 +18,8 @@ export const usePlanets = () => {
 
       setPlanets(response?.data.results || []);
       setTotalPages(Math.ceil(response?.data.count / 10));
-    } catch (error: unknown) {
-      toast.error(
-        "Erro ao buscar planetas, tente novamente mais tarde",
-        {
-          autoClose: 5000,
-        },
-        error
-      );
+    } catch (error) {
+      new ErrorLoadPlanets(error as Error);
     } finally {
       setLoading(false);
     }
