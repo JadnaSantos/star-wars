@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { StartWarsService } from "../service/http/star.wars.service";
 import { Details } from "../types/details.type";
-import { ErrorLoadPlanets } from "./erros/ErrorLoadPlanets";
+import { ErrorLoadDetails } from "./erros/ErrosDetails";
 
 export const useDetails = () => {
   const { type, id } = useParams();
@@ -14,7 +14,7 @@ export const useDetails = () => {
       const response = await StartWarsService.getDetails(type, id);
       setData(response.data);
     } catch (error) {
-      new ErrorLoadPlanets(error as Error);
+      throw new ErrorLoadDetails(error as Error);
     } finally {
       setLoading(false);
     }

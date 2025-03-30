@@ -19,7 +19,7 @@ export const useCharacters = () => {
       setCharacters(response?.data.results || []);
       setTotalPages(Math.ceil(response?.data.count / 10));
     } catch (error) {
-      new ErrorLoadCharacters(error as Error);
+      throw new ErrorLoadCharacters(error as Error);
     } finally {
       setLoading(false);
     }

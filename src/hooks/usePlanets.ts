@@ -19,7 +19,7 @@ export const usePlanets = () => {
       setPlanets(response?.data.results || []);
       setTotalPages(Math.ceil(response?.data.count / 10));
     } catch (error) {
-      new ErrorLoadPlanets(error as Error);
+      throw new ErrorLoadPlanets(error as Error);
     } finally {
       setLoading(false);
     }

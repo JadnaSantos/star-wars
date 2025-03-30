@@ -1,5 +1,6 @@
-export class ErrorLoadPlanets extends Error {
+export class ErrorLoadDetails extends Error {
   constructor(error: Error) {
-    super(`Erro ao carregar personagens: ${error.message}`);
+    super(`Erro ao carregar detalhes: ${error.message}`);
+    this.name = "ErrorLoadDetails";
   }
 }
