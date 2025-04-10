@@ -1,6 +1,6 @@
 export class ErrorLoadDetails extends Error {
-  constructor(error: Error) {
-    super(`Erro ao carregar detalhes: ${error.message}`);
+  constructor(message:string) {
+    super(message);
     this.name = "ErrorLoadDetails";
   }
 }

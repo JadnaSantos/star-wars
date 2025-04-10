@@ -1,6 +1,6 @@
 import { Characters } from "../types/characters.types";
 import { useState, useEffect, useCallback } from "react";
-import { StartWarsService } from "../service/http/star.wars.service";
+import { StarWarsService } from "../service/http/star.wars.service";
 import { ErrorLoadCharacters } from "./erros/ErrorLoadCharacters";
 
 export const useCharacters = () => {
@@ -11,15 +11,16 @@ export const useCharacters = () => {
   const [characters, setCharacters] = useState<Characters[]>([]);
 
   const fetchData = useCallback(async () => {
+    setLoading(true)
     try {
       const response = search
-        ? await StartWarsService.searchCharacters(search)
-        : await StartWarsService.getCharacters({ page });
+        ? await StarWarsService.searchCharacters(search)
+        : await StarWarsService.getCharacters(page);
 
-      setCharacters(response?.data.results || []);
-      setTotalPages(Math.ceil(response?.data.count / 10));
+      setCharacters(response.results);
+      setTotalPages(Math.ceil(response.count / 10));
     } catch (error) {
-      throw new ErrorLoadCharacters(error as Error);
+      throw new ErrorLoadCharacters('Erro ao carregar os personagens');
     } finally {
       setLoading(false);
     }
@@ -27,7 +28,7 @@ export const useCharacters = () => {
 
   useEffect(() => {
     fetchData();
-  }, [search, page, fetchData]);
+  }, [fetchData]);
 
   const handleSearch = (value: string) => {
     setSearch(value);

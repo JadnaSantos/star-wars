@@ -1,6 +1,6 @@
 import { Planets } from "../types/planets.types";
 import { useState, useEffect, useCallback } from "react";
-import { StartWarsService } from "../service/http/star.wars.service";
+import { StarWarsService } from "../service/http/star.wars.service";
 import { ErrorLoadPlanets } from "./erros/ErrorLoadPlanets";
 
 export const usePlanets = () => {
@@ -13,13 +13,13 @@ export const usePlanets = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = search
-        ? await StartWarsService.searchPlanets(search)
-        : await StartWarsService.getPlanets({ page });
+        ? await StarWarsService.searchPlanets(search)
+        : await StarWarsService.getPlanets(page);
 
-      setPlanets(response?.data.results || []);
-      setTotalPages(Math.ceil(response?.data.count / 10));
+      setPlanets(response.results);
+      setTotalPages(Math.ceil(response.count / 10));
     } catch (error) {
-      throw new ErrorLoadPlanets(error as Error);
+      throw new ErrorLoadPlanets('Erro ao carregar os planetas');
     } finally {
       setLoading(false);
     }

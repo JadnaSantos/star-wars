@@ -1,13 +1,14 @@
+import { StarWarsResponseApi } from "../../types/StarWarsResponse.types";
+import { Characters } from "../../types/characters.types";
+import { Planets } from "../../types/planets.types";
 import { api } from "../api";
 
-export const StartWarsService = {
-  getCharacters: async function (params: { page?: number }) {
-    const pageParam = params.page;
-    const endpoint = `/people/?page=${pageParam}`;
+export const StarWarsService = {
+  getCharacters: async function (page: number = 1): Promise<StarWarsResponseApi<Characters>>{
     try {
-      const response = await api.get(endpoint);
-      return response;
-    } catch (error: unknown) {
+      const { data } = await api.get(`/people/?page=${page}`);
+      return data
+    } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Error to getCharacters : ${error.message}`);
       } else {
@@ -16,9 +17,9 @@ export const StartWarsService = {
     }
   },
 
-  searchCharacters: async function (search: string) {
+  searchCharacters: async function (name: string):Promise<StarWarsResponseApi<Characters>> {
     try {
-      const data = await api.get(`/people/?search=${search}`);
+      const { data } = await api.get(`/people/?search=${name}`);
       return data;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -29,13 +30,12 @@ export const StartWarsService = {
     }
   },
 
-  getPlanets: async function (params: { page?: number }) {
-    const pageParam = params.page;
-    const endpoint = `/planets/?page=${pageParam}`;
+  getPlanets: async function (page: number = 1): Promise<StarWarsResponseApi<Planets>> {
+
     try {
-      const response = await api.get(endpoint);
-      return response;
-    } catch (error: unknown) {
+      const { data } = await api.get(`/planets/?page=${page}`);
+      return data;
+    } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Error to getPlanets: ${error.message}`);
       } else {
@@ -44,11 +44,12 @@ export const StartWarsService = {
     }
   },
 
-  searchPlanets: async function (search: string) {
+  searchPlanets: async function (name: string):  Promise<StarWarsResponseApi<Planets>> {
     try {
-      const data = await api.get(`/planets/?search=${search}`);
+      const { data } = await api.get(`/planets/?search=${name}`);
+
       return data;
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Error to searchPlanets: ${error.message}`);
       } else {
@@ -61,7 +62,7 @@ export const StartWarsService = {
     try {
       const data = await api.get(`/${type}/${id}/`);
       return data;
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Error to getDetails: ${error.message}`);
       } else {

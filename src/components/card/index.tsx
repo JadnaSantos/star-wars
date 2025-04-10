@@ -7,7 +7,7 @@ export type CardProps = {
   details: {
     label: string;
     value?: string;
-    link?: string | Array<string>;
+    link?: string | string[]
   }[];
 };
 
@@ -23,35 +23,33 @@ export const Card = ({ id, title, details }: CardProps) => {
     }
   };
 
+  const renderLinkIntoCard = (link?: string | string[] ) => {
+    if(!link) return
+
+    const renderLink = (value: string) => (
+      <S.CardLink key={id} onClick={() => handleNavigation(value)}>
+        {value}
+      </S.CardLink>
+    )
+
+    return Array.isArray(link)
+      ? link.map((value) => renderLink(value))
+      : renderLink(link)
+  }
+
   return (
     <>
       <S.CardContainer>
         <S.CardContent>
           <S.CardTitle>{title}</S.CardTitle>
           <S.CardList key={id}>
-            {details.map((detail) => (
-              <S.CardListItem>
+            {details.map((item) => (
+              <S.CardListItem key={id}>
                 <S.CardListItens>
-                  <p>{detail.label}:</p>
-                  <p>{detail.value}</p>
+                  <p>{item.label}:</p>
+                  <p>{item.value}</p>
                 </S.CardListItens>
-                {Array.isArray(detail.link) ? (
-                  <>
-                    {detail.link.map((multiploLink) => (
-                      <S.CardLink
-                        onClick={() => handleNavigation(multiploLink)}
-                      >
-                        {multiploLink}
-                      </S.CardLink>
-                    ))}
-                  </>
-                ) : typeof detail.link === "string" ? (
-                  <S.CardLink
-                    onClick={() => handleNavigation(detail.link as string)}
-                  >
-                    {detail.link}
-                  </S.CardLink>
-                ) : null}
+                {renderLinkIntoCard(item.link)}
               </S.CardListItem>
             ))}
           </S.CardList>
